@@ -1,7 +1,14 @@
+vim.opt.runtimepath:prepend(vim.fn.stdpath("data") .. "/site")
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+require("custom.keymaps")
+
 -- Basic neccessaty
 vim.o.number = true
 vim.o.relativenumber = true
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = "unnamedplus"
 vim.o.undofile = true
 vim.o.scrolloff = 10
 vim.o.confirm = true
@@ -19,7 +26,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -35,18 +41,27 @@ rtp:prepend(lazypath)
 
 require("lazy").setup({
 	{
-	"folke/tokyonight.nvim",
-	priority = 1000, -- Make sure to load this before all the other start plugins.
-	config = function()
-		-- -@diagnostic disable-next-line: missing-fields
-		require("tokyonight").setup({
-			styles = {
-				comments = { italic = false }, -- Disable italics in comments
-			},
-		})
+		"folke/tokyonight.nvim",
+		priority = 1000, -- Make sure to load this before all the other start plugins.
+		config = function()
+			-- -@diagnostic disable-next-line: missing-fields
+			require("tokyonight").setup({
+				styles = {
+					comments = { italic = false }, -- Disable italics in comments
+				},
+			})
 
-		vim.cmd.colorscheme("unokai")
-	end,
-},
+			vim.cmd.colorscheme("unokai")
+		end,
+	},
+	require("custom.telescope"),
+	require("custom.lsp-mason"),
 	require("custom.neo-tree"),
+	require("custom.auto-complete-format"),
+	require("custom.tree-sitter"),
+	require("custom.which-key"),
 })
+
+require("custom.floaterm").setup()
+
+vim.opt.termguicolors = true
