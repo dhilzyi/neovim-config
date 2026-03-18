@@ -41,6 +41,11 @@ return {
 				-- You can use 'stop_after_first' to run the first available formatter from the list
 				-- javascript = { "prettierd", "prettier", stop_after_first = true },
 			},
+			formatters = {
+				sql_formatter = {
+					prepend_args = { "-l", "postgresql" },
+				},
+			},
 		},
 	},
 
@@ -141,5 +146,10 @@ return {
 			-- Shows a signature help window while you type arguments for a function
 			signature = { enabled = true },
 		},
+	},
+	{ -- AutoPairs
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true,
 	},
 }

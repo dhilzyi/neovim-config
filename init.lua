@@ -40,26 +40,15 @@ local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{
-		"folke/tokyonight.nvim",
-		priority = 1000, -- Make sure to load this before all the other start plugins.
-		config = function()
-			-- -@diagnostic disable-next-line: missing-fields
-			require("tokyonight").setup({
-				styles = {
-					comments = { italic = false }, -- Disable italics in comments
-				},
-			})
-
-			vim.cmd.colorscheme("unokai")
-		end,
-	},
 	require("custom.telescope"),
+	-- require("custom.lsp-mason-new"),
 	require("custom.lsp-mason"),
+	require("custom.styles"),
 	require("custom.neo-tree"),
-	require("custom.auto-complete-format"),
-	require("custom.tree-sitter"),
+	require("custom.auto-plugins"),
+	require("custom.nvim-treesitter"),
 	require("custom.which-key"),
+	require("custom.rest-nvim"),
 })
 
 require("custom.floaterm").setup()

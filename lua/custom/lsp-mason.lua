@@ -245,6 +245,11 @@ return {
 						},
 					},
 				},
+				sqls = {
+					root_dir = function(fname)
+						return require("lspconfig.util").root_pattern("config.yml", ".git")(fname)
+					end,
+				},
 			}
 
 			-- Ensure the servers and tools above are installed
@@ -273,6 +278,7 @@ return {
 					"emmet_language_server",
 					"ts_ls",
 					"gopls",
+					"sqls",
 				}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
 				automatic_installation = false,
 				automatic_enable = {
