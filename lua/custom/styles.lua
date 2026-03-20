@@ -27,8 +27,17 @@ return {
 					comments = { italic = false }, -- Disable italics in comments
 				},
 			})
+		end,
+	},
+	{
+		"rebelot/kanagawa.nvim",
+		priority = 1001,
+		config = function()
+			require("kanagawa").setup({
+				commentStyle = { italic = false },
+			})
 
-			vim.cmd.colorscheme("unokai")
+			vim.cmd.colorscheme("kanagawa")
 		end,
 	},
 }

@@ -7,6 +7,7 @@ return {
 			table.insert(opts.ensure_installed, "http")
 		end,
 	},
+	ft = "http",
 	keys = {
 		{ "<leader>rr", "<cmd>Rest run<CR>", desc = "Rest Run Request" },
 	},

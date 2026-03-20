@@ -26,6 +26,15 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+-- json formatter for rest-nvim
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "json",
+	callback = function()
+		vim.bo.formatprg = "jq"
+		vim.bo.formatexpr = ""
+	end,
+})
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -49,6 +58,7 @@ require("lazy").setup({
 	require("custom.nvim-treesitter"),
 	require("custom.which-key"),
 	require("custom.rest-nvim"),
+	require("custom.additionals"),
 })
 
 require("custom.floaterm").setup()
