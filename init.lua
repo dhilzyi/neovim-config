@@ -91,7 +91,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -102,7 +102,7 @@ vim.g.have_nerd_font = false
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.o.relativenumber = true
+vim.o.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = "a"
@@ -790,6 +790,7 @@ require("lazy").setup({
 				html = { "prettier" },
 				css = { "prettier" },
 				javascript = { "prettier" },
+				sql = { "sql_formatter" },
 				-- Conform can also run multiple formatters sequentially
 				-- python = { "isort", "black" },
 				--
@@ -1016,7 +1017,7 @@ require("lazy").setup({
 	require("kickstart.plugins.indent_line"),
 	-- require 'kickstart.plugins.lint',
 	require("kickstart.plugins.autopairs"),
-	-- require 'kickstart.plugins.neo-tree',
+	require("kickstart.plugins.neo-tree"),
 	-- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 	-- require 'kickstart.plugins.luau-lsp',
 
@@ -1141,23 +1142,13 @@ require("lazy").setup({
 		-- opts = {}
 	},
 	{
-		"obsidian-nvim/obsidian.nvim",
-		version = "*", -- recommended, use latest release instead of latest commit
-		ft = "markdown",
-		---@module 'obsidian'
-		---@type obsidian.config
-		opts = {
-			legacy_commands = false, -- this will be removed in the next major release
-			workspaces = {
-				{
-					name = "personal",
-					path = "~/notes/dailies",
-				},
-				{
-					name = "work",
-					path = "~/vaults/work",
-				},
-			},
+		"rest-nvim/rest.nvim",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			opts = function(_, opts)
+				opts.ensure_installed = opts.ensure_installed or {}
+				table.insert(opts.ensure_installed, "http")
+			end,
 		},
 	},
 
@@ -1399,7 +1390,10 @@ local function toggle_float()
 			style = "minimal",
 			border = "rounded",
 		})
-		vim.api.nvim_set_option_value("winhl", "Normal:Normal,FloatBorder:FloatBorder", { win = state.win })
+		vim.api.nvim_set_hl(0, "MyFloatBorder", {
+			fg = "#f3ebf5",
+		})
+		vim.api.nvim_set_option_value("winhl", "Normal:Normal,FloatBorder:MyFloatBorder", { win = state.win })
 
 		switch_to_tab()
 	end
@@ -1415,5 +1409,7 @@ end, { desc = "Next Float Tab" })
 vim.keymap.set({ "n", "t" }, "<M-[>", function()
 	cycle_tab(-1)
 end, { desc = "Prev Float Tab" })
+
+vim.opt.termguicolors = true
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
