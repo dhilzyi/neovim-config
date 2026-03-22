@@ -14,10 +14,19 @@ return {
 		{ "<leader>d", ":Neotree reveal<CR>", desc = "NeoTree reveal", silent = true },
 	},
 	opts = {
+		event_handlers = {
+			{
+				event = "file_opened",
+				handler = function(_)
+					-- This command tells Neo-tree to close its window
+					require("neo-tree.command").execute({ action = "close" })
+				end,
+			},
+		},
 		filesystem = {
 			window = {
 				mappings = {
-					["\\"] = "close_window",
+					["<leader>d"] = "close_window",
 				},
 			},
 		},
