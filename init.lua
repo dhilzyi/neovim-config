@@ -57,7 +57,7 @@ require("lazy").setup({
 	require("custom.auto-plugins"),
 	require("custom.nvim-treesitter"),
 	require("custom.which-key"),
-	require("custom.rest-nvim"),
+	require("custom.rest-plugins"),
 	require("custom.additionals"),
 })
 
