@@ -3,6 +3,7 @@ vim.g.maplocalleader = " "
 
 require("custom.keymaps")
 require("custom.autocmd")
+require("custom.notes")
 
 -- Basic neccessaty
 vim.o.number = true
