@@ -40,10 +40,12 @@ require("lazy").setup({
 	require("plugins.nvim-treesitter"),
 	require("plugins.which-key"),
 	require("plugins.rest-plugins"),
+	require("plugins.floaterm"),
 	require("plugins.additionals"),
 })
 
-require("custom.floaterm").setup()
+-- custom floaterm build
+-- require("custom.floaterm").setup()
 
 vim.opt.termguicolors = true
 
