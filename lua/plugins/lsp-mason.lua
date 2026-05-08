@@ -252,6 +252,26 @@ return {
 				},
 			}
 
+			local lspconfig = require("lspconfig")
+			local configs = require("lspconfig.configs")
+
+			-- define kotlin_lsp if not already defined
+			if not configs.kotlin_lsp then
+				configs.kotlin_lsp = {
+					default_config = {
+						cmd = { "kotlin-lsp" }, -- make sure this is in your PATH
+						filetypes = { "kotlin" },
+						root_dir = lspconfig.util.root_pattern("settings.gradle", "settings.gradle.kts", ".git"),
+						single_file_support = true,
+					},
+				}
+			end
+
+			-- then setup like normal
+			lspconfig.kotlin_lsp.setup({
+				capabilities = capabilities,
+			})
+
 			-- Ensure the servers and tools above are installed
 			--
 			-- To check the current status of installed tools and/or manually install

@@ -30,6 +30,10 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
+if vim.fn.match(vim.fn.tolower(vim.uv.os_uname().sysname), "windows") then
+	vim.env.CC = "gcc"
+end
+
 require("lazy").setup({
 	require("plugins.telescope"),
 	-- require("custom.lsp-mason-new"),

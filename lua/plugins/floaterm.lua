@@ -8,6 +8,7 @@ return {
 		vim.g.floaterm_title = "Terminal: $1/$2"
 		vim.g.floaterm_borderchars = "─│─│╭╮╯╰" -- Nice rounded borders
 		vim.g.floaterm_autoclose = 0
+		vim.g.floaterm_autoinsert = false
 	end,
 	keys = {
 		-- Toggle existing terminal
