@@ -107,7 +107,7 @@ return {
 				end,
 			})
 
-			vim.cmd.colorscheme("kanagawa")
+			-- vim.cmd.colorscheme("kanagawa")
 			vim.g.terminal_color_2 = "#98BB6C" -- Normal Green
 			vim.g.terminal_color_10 = "#A3D497" -- Bright Green
 

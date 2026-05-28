@@ -18,6 +18,8 @@ return { -- Highlight, edit, and navigate code
 			"vim",
 			"vimdoc",
 			"go",
+			"javascript",
+			"css",
 		}
 		require("nvim-treesitter").install(parsers)
 		vim.api.nvim_create_autocmd("FileType", {

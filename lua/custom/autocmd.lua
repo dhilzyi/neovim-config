@@ -1,6 +1,6 @@
 -- make this file 2 spaces instead 8 spaces indent
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "html", "javascript", "typescript", "css", "json" },
+	pattern = { "html", "javascript", "typescript", "css", "json", "sql" },
 	callback = function()
 		vim.opt_local.shiftwidth = 2
 		vim.opt_local.tabstop = 2

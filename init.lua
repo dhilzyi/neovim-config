@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = ","
 
 require("custom.keymaps")
 require("custom.autocmd")
@@ -46,11 +46,13 @@ require("lazy").setup({
 	require("plugins.rest-plugins"),
 	require("plugins.floaterm"),
 	require("plugins.additionals"),
+	require("plugins.neorg"),
 })
 
 -- custom floaterm build
 -- require("custom.floaterm").setup()
 
+vim.cmd.colorscheme("unokai")
 vim.opt.termguicolors = true
 
 -- Smart 'gx' for WSL2
